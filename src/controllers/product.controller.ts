@@ -16,10 +16,17 @@ class ProductController {
 
   public async getProducts(req: Request, res: Response): Promise<void> {
     try {
+      const { limit } = req.query;
+
       const products = await this.productService.getProducts();
       
       if (products.length === 0) {
         res.status(404).send({ status: "error", message: "No products found" });
+        return;
+      }
+
+      if (limit) {
+        res.status(200).send(products.slice(0, Number(limit)));
         return;
       }
 
