@@ -1,4 +1,4 @@
-# Primer Entrega - CoderHouse
+# Entregas - CoderHouse
 
 ## Instrucciones
 
