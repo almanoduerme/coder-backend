@@ -1,6 +1,5 @@
 import { FsDatabase } from "../libs/fs";
 import { CartInterface } from "../interfaces/cart.interface";
-import { ProductInterface } from "../interfaces/product.interface";
 import path from 'path';
 
 const cartsFilePath = path.resolve(__dirname, '../../src/database/carts.json');

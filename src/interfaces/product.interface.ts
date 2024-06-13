@@ -1,5 +1,4 @@
-interface ProductInterface {
-  id: string;
+interface ProductBase {
   title: string;
   description: string;
   code: string;
@@ -7,7 +6,11 @@ interface ProductInterface {
   status: boolean;
   stock: number;
   category: string;
-  thumbnails?: string[];
+  thumbnails: string[];
 }
 
-export { ProductInterface };
+interface Product extends ProductBase {
+  id: string;
+}
+
+export { ProductBase, Product };

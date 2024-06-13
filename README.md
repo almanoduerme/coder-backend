@@ -25,3 +25,8 @@ PORT=8080
 - **POST /api/cart:** Crea un nuevo carrito.
 - **GET /api/cart/:cid:** Obtiene un carrito por su ID.
 - **POST /api/cart/:cid/product/:pid:** Agrega un producto a un carrito.
+
+## Endpoints for Handlebars and Socket.io
+
+- **GET /api/products:** Renderiza los productos.
+- **GET /realtimeproducts:** Renderiza los productos en tiempo real utilizando Socket.io.

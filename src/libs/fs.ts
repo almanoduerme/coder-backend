@@ -1,4 +1,5 @@
 import fs from "fs";
+import { generateId } from "../utils/generate-id";
 
 class FsDatabase<T> {
   private readonly filePath: string;
@@ -57,9 +58,10 @@ class FsDatabase<T> {
   public create = async (entity: T): Promise<T> => {
     try {
       const entities = await this.read();
-      entities.push(entity);
+      const newEntity = { id: generateId(), ...entity };
+      entities.push(newEntity);
       await this.write(entities);
-      return entity;
+      return newEntity;
     } catch (error) {
       throw new Error(`Failed to create entity in ${this.filePath}: ${error}`);
     }

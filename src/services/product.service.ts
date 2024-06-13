@@ -1,5 +1,5 @@
 import { FsDatabase } from "../libs/fs";
-import { ProductInterface } from "../interfaces/product.interface";
+import { Product, ProductBase } from "../interfaces/product.interface";
 import path from 'path';
 
 const productsFilePath = path.resolve(__dirname,'../../src/database/products.json');
@@ -7,37 +7,37 @@ const productsFilePath = path.resolve(__dirname,'../../src/database/products.jso
 class ProductService {
   private readonly database = new FsDatabase(productsFilePath);
 
-  public async getProducts(): Promise<ProductInterface[] | []> {
+  public async getProducts(): Promise<Product[] | []> {
     try {
       const products = await this.database.getAll();
-      return products as ProductInterface[];
+      return products as Product[];
     } catch (error) {
       throw new Error(`Failed to read file at ${productsFilePath}: ${error}`);
     }
   }
 
-  public async getProduct(id: string): Promise<ProductInterface | undefined> {
+  public async getProduct(id: string): Promise<Product | undefined> {
     try {
       const product = await this.database.getById(id);
-      return product as ProductInterface;
+      return product as Product;
     } catch (error) {
       throw new Error(`Failed to read file at ${productsFilePath}: ${error}`);
     }
   }
 
-  public async addProduct(product: ProductInterface): Promise<ProductInterface> {
+  public async addProduct(product: ProductBase): Promise<Product> {
     try {
       const newProduct = await this.database.create(product);
-      return newProduct as ProductInterface;
+      return newProduct as Product;
     } catch (error) {
       throw new Error(`Failed to write file at ${productsFilePath}: ${error}`);
     }
   }
 
-  public async updateProduct(product: ProductInterface): Promise<ProductInterface> {
+  public async updateProduct(product: Product): Promise<Product> {
     try {
       const updatedProduct = await this.database.update(product.id, product);
-      return updatedProduct as ProductInterface;
+      return updatedProduct as Product;
     } catch (error) {
       throw new Error(`Failed to update file at ${productsFilePath}: ${error}`);
     }

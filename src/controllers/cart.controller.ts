@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { CartService } from "../services/cart.service";
-import { generateId } from "../utils/generate-id";
 import { ProductService } from "../services/product.service";
-import { CartInterface } from "../interfaces/cart.interface";
+import { CartInterface, CartInterfaceBase } from "../interfaces/cart.interface";
 
 class CartController {
   private readonly cartService = new CartService();
@@ -31,8 +30,8 @@ class CartController {
 
   public async createCart(req: Request, res: Response): Promise<void> {
     try {
-      const newCart: CartInterface = { id: generateId(), products: [] };
-      const cart = await this.cartService.createCart(newCart);
+      const newCart: CartInterfaceBase = { products: [] };
+      const cart = await this.cartService.createCart(newCart as CartInterface);
 
       res.status(201).send(cart);
     } catch (error) {}

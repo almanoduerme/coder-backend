@@ -3,9 +3,12 @@ interface ProductInCartInterface {
   quantity: number;
 }
 
-interface CartInterface {
-  id: string;
+interface CartInterfaceBase {
   products: ProductInCartInterface[];
 }
 
-export { CartInterface };
+interface CartInterface extends CartInterfaceBase {
+  id: string;
+}
+
+export { CartInterface, CartInterfaceBase };
